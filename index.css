@@ -26,6 +26,7 @@ h1 {
 
 .active {
 	background-color: #EFFFEF;
+	cursor: auto;
 }
 
 #svgContainer {
