@@ -71,7 +71,7 @@
 ,
 { "type": "Feature", "properties": { "Country name": "Macao, China", "Alpha-2": "MO", "Retail price": "310.0", "Wholesale price": "" }, "geometry": null }
 ,
-{ "type": "Feature", "properties": { "Country name": "Liechtenstein", "Alpha-2": "LI", "Retail price": "1133.7", "Wholesale price": "" }, "geometry": null }
+{ "type": "Feature", "properties": { "Country name": "Liechtenstein", "Alpha-2": "LI", "Retail price": "133.7", "Wholesale price": "" }, "geometry": null }
 ,
 { "type": "Feature", "properties": { "Country name": "Mali", "Alpha-2": "ML", "Retail price": "62.7", "Wholesale price": "" }, "geometry": null }
 ,
@@ -107,7 +107,7 @@
 ,
 { "type": "Feature", "properties": { "Country name": "Ecuador", "Alpha-2": "EC", "Retail price": "7.0", "Wholesale price": "4000.0" }, "geometry": null }
 ,
-{ "type": "Feature", "properties": { "Country name": "Belarus", "Alpha-2": "BY", "Retail price": "110.0", "Wholesale price": "75.0" }, "geometry": null }
+{ "type": "Feature", "properties": { "Country name": "Belarus", "Alpha-2": "BY", "Retail price": "110.0", "Wholesale price": "75000.0" }, "geometry": null }
 ,
 { "type": "Feature", "properties": { "Country name": "El Salvador", "Alpha-2": "SV", "Retail price": "24.0", "Wholesale price": "25000.0" }, "geometry": null }
 ,
