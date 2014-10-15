@@ -145,13 +145,13 @@ d3.json("map.json", function (error, map) {
 });
 
 document.getElementById("buttonRetail").addEventListener("click", function () {
-			document.getElementById("buttonRetail").classList.toggle('active');
-			document.getElementById("buttonWholesale").classList.toggle('active');;
+			document.getElementById("buttonRetail").classList.add('active');
+			document.getElementById("buttonWholesale").classList.remove('active');;
 		});
 
 document.getElementById("buttonWholesale").addEventListener("click", function () {
-			document.getElementById("buttonRetail").classList.toggle('active');
-			document.getElementById("buttonWholesale").classList.toggle('active');;
+			document.getElementById("buttonRetail").classList.remove('active');
+			document.getElementById("buttonWholesale").classList.add('active');;
 		});
 
 </script>
