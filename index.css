@@ -1,0 +1,38 @@
+h1 {
+	color: green;
+	text-align: center;
+	font-family:"Courier New";
+}
+div{
+	text-align: center;
+	padding: 10px 10px 15px;
+}
+
+/*.buttons{
+	text-align: center;
+}
+.buttons button {
+	margin: auto 5em ;
+}
+/*#buttonRetailPrice{
+	position: relative;
+
+}
+#buttonWholeSale{
+	position: relative;*/
+
+/*}
+svg {
+	background-color: #F3F3F3
+}
+.subunit {
+	fill: white;
+	border-color:black;
+	stroke: blue;
+
+	border-style: solid;
+	border-width: 30px;
+	stroke-linejoin: round;
+
+}*/
+
