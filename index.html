@@ -2,11 +2,11 @@
 <meta charset="utf-8">
 <style>
 
-svg {background-color: #F3F3F3}
-.subunit {fill: #FEFEFE; /*stroke: #EEE; stroke-width: 1;*/}
-/*.-99 {fill: none;}*/
+/*svg {background-color: #FEFEFE}*/
+.subunit {fill: #F3F3F3;} /*stroke: #EEE; stroke-width: 1;}
+/*.-99 {fill: none;}
 .GL {fill: none;}
-.AF {fill: #CDC;}
+.AF {fill: #CDC;}*/
 
 </style>
 <body>
@@ -14,15 +14,18 @@ svg {background-color: #F3F3F3}
 <script src="http://d3js.org/topojson.v1.min.js"></script>
 <script>
 
-// mapping engine
+// mapping
 
-var width = 1400,
+
+
+d3.json("map.json", function (error, map) {
+  
+  var width = 1400,
     height = 750,
 	svg = d3.select("body").append("svg")
 	    .attr("width", width)
 	    .attr("height", height);
 
-d3.json("map.json", function(error, map) {
   if (error) return console.error(error);
 
 	var subunits = topojson.feature(map, map.objects.subunits),
@@ -38,14 +41,91 @@ d3.json("map.json", function(error, map) {
 		    .attr("class", function(d) { return "subunit " + d.id})
 		    .attr("d", path);
 	
+	// data fetch and processing
+
+	var countries = [],
+		minRetailPrice = 1000000,
+		maxRetailPrice = 0,
+		minWholesalePrice = 1000000,
+		maxWholesalePrice = 0;
+
+	d3.json("cocaine.json", function (error, data) {
+
+		data.features.forEach( function (country) {
+		
+			// build countries array
+
+			countries.push({
+				name: country.properties["Country name"],
+				id: country.properties["Alpha-2"],
+				retailPrice: +country.properties["Retail price"],
+				wholesalePrice: +country.properties["Wholesale price"]/1000
+			}) 
+
+			// find min and max values
+
+			if (country.properties["Retail price"] && +country.properties["Retail price"] < minRetailPrice) {
+				minRetailPrice = +country.properties["Retail price"];
+			}
+
+			if (country.properties["Retail price"] && +country.properties["Retail price"] > maxRetailPrice) {
+				maxRetailPrice = +country.properties["Retail price"];
+			}
+
+			if (country.properties["Wholesale price"] && +country.properties["Wholesale price"] < minWholesalePrice) {
+				minWholesalePrice = +country.properties["Wholesale price"];
+			}
+
+			if (country.properties["Wholesale price"] && +country.properties["Wholesale price"] > maxWholesalePrice) {
+				maxWholesalePrice = +country.properties["Wholesale price"];
+			}
+
+		});
+
+		// kilo to gram
+
+		minWholesalePrice = minWholesalePrice/1000;
+		maxWholesalePrice = maxWholesalePrice/1000;
+
+		// scales
+
+		var retailScale = d3.scale.linear()
+			.domain([minRetailPrice, maxRetailPrice])
+			.range(["#BFB", "#AEA"]),
+			wholesaleScale = d3.scale.linear()
+			.domain([minWholesalePrice, maxWholesalePrice])
+			.range(["#CDC", "#ABA"]);
+
+		// scale colour countries
+
+		function colorCountries (countries, selection) {
+			countries.forEach( function (country) {
+				if (selection === "Retail price") {
+					d3.select(".subunit." + country.id)
+						.style("fill", retailScale(country.retailPrice));
+				}
+				// else {
+				// 	svg.select("." + country.id)
+				// 		.style("fill", wholesaleScale(country.wholesalePrice));
+				// }
+			})
+		}
+
+		var selection = "Retail price";
+
+		colorCountries(countries, selection);
+
+	});	    
+
 });
 
-// data engine
-
-d3.json("")
 
 
-var data = require("")
+
+
+
+
+
 
 </script>
 </body>
