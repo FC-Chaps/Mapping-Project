@@ -1,0 +1,16 @@
+{
+  "name": "test_tutorial",
+  "version": "1.0.0",
+  "description": "Short testing practice with Mocha",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^1.9.2",
+    "mocha": "^1.21.4",
+    "supertest": "^0.14.0"
+  }
+}
