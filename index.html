@@ -22,7 +22,7 @@ var width = 1400,
 	    .attr("width", width)
 	    .attr("height", height);
 
-d3.json("map.json", function(error, map) {
+d3.json("map.json", function (error, map) {
   if (error) return console.error(error);
 
 	var subunits = topojson.feature(map, map.objects.subunits),
@@ -42,10 +42,9 @@ d3.json("map.json", function(error, map) {
 
 // data engine
 
-d3.json("")
-
-
-var data = require("")
+d3.json("cocaine.json", function (error, data) {
+	console.log(data);
+});
 
 </script>
 </body>
