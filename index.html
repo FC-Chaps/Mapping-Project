@@ -1,22 +1,27 @@
 <!DOCTYPE html>
+<html>
 <head>
 
-<meta charset="utf-8">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="index.css">
-<style>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <style>
 
-/*svg {background-color: #FEFEFE}*/
-.subunit {fill: #F3F3F3;} /*stroke: #EEE; stroke-width: 1;}
-/*.-99 {fill: none;}
-.GL {fill: none;}
-.AF {fill: #CDC;}*/
+    /*svg {background-color: #FEFEFE}*/
+    .subunit {fill: #F3F3F3;} /*stroke: #EEE; stroke-width: 1;}
+    /*.-99 {fill: none;}
+    .GL {fill: none;}
+    .AF {fill: #CDC;}*/
 
-</style>
+    </style>
+    
 </head>
 <body>
 
 <div><h1>Cocaine Map</h1></div>
+<form action="http://fc-chaps.github.io" id="back-button">
+    <input type="submit" value="Back">
+</form>
 <div >
 	<button id = "buttonRetail">Retail Prices</button>
 	<button id = "buttonWholesale" >Whole Sale Prices</button>
@@ -154,3 +159,4 @@ d3.json("map.json", function (error, map) {
 
 </script>
 </body>
+</html>
