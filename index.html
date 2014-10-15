@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>D3 Practice</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <h1>Where to Buy Cheap Cocain</h1>
+    <form action="http://fc-chaps.github.io" id="back-button">
+        <input type="submit" value="Back">
+    </form>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <!-- There are two main ways to render 2-dimensional geometry in a browser:
+    SVG and Canvas. SVG allows you to style it with CSS so, we'll use that one -->
+    <script>
+
+    /* The d3.json thing acts asynchronously (Notice the callback). 
+    * That's why it's a good idea to create an empty SVG separately rather than inside that 
+    * callback so as to allow things to happen faster
+    */
+    var width = 960,
+        height = 1160;
+
+    var svg = d3.select("body").append("svg")
+        .attr("width", width)
+        .attr("height", height);
+
+
+    d3.json("uk.json", function callback (error, uk) {
+        if (error) {
+            return console.log(error);
+        } 
+        svg.append("path")
+            .datum(topojson.feature(uk, uk.objects.subunits))
+            /* To render the 3-dimensional geo-data on to a 2-dimensional screen we need to
+            * use a projection and a path generator.
+            */ 
+            .attr("d", d3.geo.path().projection(d3.geo.mercator()));
+    });
+
+    /* The original files we combined and eventually converted into a TOpoJSON file to 
+    * make the storage as small as possible. However, for display purposes we must now 
+    * convert BACK to GeoJSON. (The next few declarations are to make the rest a bit clearer, don't stress)
+    */
+    var subunits = topojson.feature(uk, uk.objects.subunits);
+    var projection = d3.geo.albers()
+        .center([0, 55.4])
+        .rotate([4.4, 0])
+        .parallels([50, 60]) //Longitudinal Parallel degrees north
+        .scale(6000)
+
+
+    
+
+    </script>
+    
+
+</body>
+</html>
