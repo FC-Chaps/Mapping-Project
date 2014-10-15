@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+svg {background-color: #F3F3F3}
+.subunit {fill: #FEFEFE; /*stroke: #EEE; stroke-width: 1;*/}
+/*.-99 {fill: none;}*/
+.GL {fill: none;}
+.AF {fill: #CDC;}
+
+</style>
+<body>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://d3js.org/topojson.v1.min.js"></script>
+<script>
+
+// mapping engine
+
+var width = 1400,
+    height = 750,
+	svg = d3.select("body").append("svg")
+	    .attr("width", width)
+	    .attr("height", height);
+
+d3.json("map.json", function(error, map) {
+  if (error) return console.error(error);
+
+	var subunits = topojson.feature(map, map.objects.subunits),
+		projection = d3.geo.mercator()
+			.scale(200)
+			.translate([width / 2, height / 1.5]),
+		path = d3.geo.path()
+    		.projection(projection);
+
+    svg.selectAll(".subunit")
+		    .data(subunits.features)
+	    .enter().append("path")
+		    .attr("class", function(d) { return "subunit " + d.id})
+		    .attr("d", path);
+	
+});
+
+// data engine
+
+d3.json("")
+
+
+var data = require("")
+
+</script>
+</body>
