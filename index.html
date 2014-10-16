@@ -28,7 +28,7 @@
 
 
 
-d3.json("map.json", function (error, map) {
+d3.json("newer.json", function (error, map) {
   
   var width = window.innerWidth,
     height = 700,
@@ -38,7 +38,7 @@ d3.json("map.json", function (error, map) {
 
   if (error) return console.error(error);
 
-	var subunits = topojson.feature(map, map.objects.subunits),
+	var subunit = topojson.feature(map, map.objects.new),
 		projection = d3.geo.mercator()
 			.scale(200)
 			.translate([width / 2, height / 1.775]),
@@ -46,8 +46,9 @@ d3.json("map.json", function (error, map) {
     		.projection(projection);
 
     svg.selectAll(".subunit")
-		    .data(subunits.features)
-	    .enter().append("path")
+    // binds the data to the selected nodes
+		    .data(subunit.features)
+	    	.enter().append("path")
 		    .attr("class", function(d) { return "subunit " + d.id})
 		    .attr("d", path);
 	
@@ -111,16 +112,16 @@ d3.json("map.json", function (error, map) {
 		function colorCountries (countries, selection) {
 			countries.forEach( function (country) {
 				if (selection === "Retail price") {
-					d3.select(".subunit." + country.id)
+					d3.selectAll(".subunit." + country.name)
 						.style("fill", retailScale(country.retailPrice));
 				}
 				else {
 					if (country.wholesalePrice === 0) {
-						d3.select(".subunit." + country.id)
+						d3.selectAll(".subunit." + country.name)
 							.style("fill", "#F3F3F3")
 					}
 					else {
-						d3.select(".subunit." + country.id)
+						d3.selectAll(".subunit." + country.name)
 							.style("fill", wholesaleScale(country.wholesalePrice));
 					}
 				}
