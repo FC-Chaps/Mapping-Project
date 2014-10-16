@@ -25,38 +25,36 @@
 <script src="http://d3js.org/topojson.v1.min.js"></script>
 <script>
 
-	// mapping
+<<<<<<< HEAD
+// mapping
 
-	d3.json("map.json", function (error, map) {
-	  
-	  var width = window.innerWidth,
-	    height = 500,
-		svg = d3.select("div#svgContainer").append("svg")
-		    .attr("width", width)
-		    .attr("height", height);
 
-	  if (error) return console.error(error);
 
-		var subunits = topojson.feature(map, map.objects.subunits),
-			projection = d3.geo.mercator()
-				.scale(150)
-				.translate([width / 2, height / 1.65]),
-			path = d3.geo.path()
-	    		.projection(projection);
+d3.json("newer.json", function (error, map) {
+  
+  var width = window.innerWidth,
+    height = 700,
+	svg = d3.select("div#svgContainer").append("svg")
+	    .attr("width", width)
+	    .attr("height", height);
 
-	    svg.selectAll(".subunit")
-			    .data(subunits.features)
-		    .enter().append("path")
-			    .attr("class", function(d) { return "subunit " + d.id})
-			    .attr("d", path);
-		
-		// data fetch and processing
+  if (error) return console.error(error);
 
-		var countries = [],
-			minRetailPrice = 1000000,
-			maxRetailPrice = 0,
-			minWholesalePrice = 1000000,
-			maxWholesalePrice = 0;
+	var subunit = topojson.feature(map, map.objects.new),
+		projection = d3.geo.mercator()
+			.scale(200)
+			.translate([width / 2, height / 1.775]),
+		path = d3.geo.path()
+    		.projection(projection);
+
+    svg.selectAll(".subunit")
+    // binds the data to the selected nodes
+		    .data(subunit.features)
+	    	.enter().append("path")
+		    .attr("class", function(d) { return "subunit " + d.id})
+		    .attr("d", path);
+	
+
 
 		d3.json("cocaine.json", function (error, data) {
 
@@ -107,21 +105,22 @@
 
 			// scale colour countries
 
-			function colorCountries (countries, selection) {
-				countries.forEach( function (country) {
-					if (selection === "Retail price") {
-						d3.select(".subunit." + country.id)
-							.style("fill", retailScale(country.retailPrice));
+<<<<<<< HEAD
+		function colorCountries (countries, selection) {
+			countries.forEach( function (country) {
+				if (selection === "Retail price") {
+					d3.selectAll(".subunit." + country.name)
+						.style("fill", retailScale(country.retailPrice));
+				}
+				else {
+					if (country.wholesalePrice === 0) {
+						d3.selectAll(".subunit." + country.name)
+							.style("fill", "#F3F3F3")
 					}
 					else {
-						if (country.wholesalePrice === 0) {
-							d3.select(".subunit." + country.id)
-								.style("fill", "#F3F3F3");
-						}
-						else {
-							d3.select(".subunit." + country.id)
-								.style("fill", wholesaleScale(country.wholesalePrice));
-						}
+						d3.selectAll(".subunit." + country.name)
+							.style("fill", wholesaleScale(country.wholesalePrice));
+
 					}
 				})
 			}
