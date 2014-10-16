@@ -19,7 +19,7 @@
 	<div class ="button active" id = "buttonRetail">Retail</div>
 	<div class ="button" id = "buttonWholesale" >Wholesale</div>
 	<div id="svgContainer"></div>
-	<div class="databox">Canada &nbsp;&nbsp;&nbsp;&nbsp; $&nbsp;&nbsp;81.20</div>
+	<div class="databox"></div>
 
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="http://d3js.org/topojson.v1.min.js"></script>
@@ -67,8 +67,8 @@
 				countries.push({
 					name: country.properties["Country name"],
 					id: country.properties["Alpha-2"],
-					retailPrice: +country.properties["Retail price"],
-					wholesalePrice: +country.properties["Wholesale price"]/1000
+					retailPrice: Math.round(+country.properties["Retail price"]),
+					wholesalePrice: Math.round(+country.properties["Wholesale price"]/1000)
 				}) 
 
 				// find min and max values
@@ -116,7 +116,7 @@
 					else {
 						if (country.wholesalePrice === 0) {
 							d3.select(".subunit." + country.id)
-								.style("fill", "#F3F3F3")
+								.style("fill", "#F3F3F3");
 						}
 						else {
 							d3.select(".subunit." + country.id)
@@ -133,25 +133,75 @@
 			document.getElementById("buttonRetail").addEventListener("click", function () {
 				selection = "Retail price";
 				colorCountries(countries, selection);
+				displayDefault();
 			})
 
 			document.getElementById("buttonWholesale").addEventListener("click", function () {
 				selection = "Wholesale price";
 				colorCountries(countries, selection);
+				displayDefault();
 			})
-		});	
+		
+			// DISPLAY TEXT ON EVENTS
 
+			function displayDefault () {
+				d3.select(".databox")
+					.text("Hover over a country for price data");
+			}
+
+			displayDefault();
+
+			function displayDefault1 () {
+				d3.select(".databox")
+					.text("Hover over another country for price data");
+			}
+
+			function displayText (name, price) {
+				d3.select(".databox")
+					.text(name + "\xA0\xA0\xA0\xA0" + "$" + "\xA0" + price); // print the required text to the databox
+			}
+
+			function displayOptions (country) {
+				if (selection === "Retail price") { // on page load and retail button click...
+					if (country.retailPrice !== 0) {
+						displayText(country.name, country.retailPrice); // ...call displayText function (see above) with retailPrice
+					}
+				}
+				else { // on wholesale button click...
+					if (country.wholesalePrice !== 0) {
+						displayText(country.name, country.wholesalePrice); // ...call displayText function (see above) with wholesalePrice
+					}
+				}
+			}
+
+			countries.forEach(function (country) { // run through the countries array
+				d3.select(".subunit." + country.id) // select each path using its country id
+					// MOUSEOVER
+					.on("mouseover", function(){ // add a mouseover event listener
+						displayOptions(country); // call displayAlternatives function (see above)
+					})
+					// MOUSELEAVE
+					.on("mouseleave", function(){ // add a mouseleave event listener
+						displayDefault1(); // call displayDefault function (see above)
+					})
+					// CLICK (not in use)
+					// .on("click", function(){ // add a click event listener
+					// 	displayOptions(country); // call displayAlternatives function (see above)
+					// });	
+			});
+		});
 	});
 
 	document.getElementById("buttonRetail").addEventListener("click", function () {
-				document.getElementById("buttonRetail").classList.add('active');
-				document.getElementById("buttonWholesale").classList.remove('active');;
-			});
+		document.getElementById("buttonRetail").classList.add('active');
+		document.getElementById("buttonWholesale").classList.remove('active');
+	});
 
 	document.getElementById("buttonWholesale").addEventListener("click", function () {
-				document.getElementById("buttonRetail").classList.remove('active');
-				document.getElementById("buttonWholesale").classList.add('active');;
-			});
+		document.getElementById("buttonRetail").classList.remove('active');
+		document.getElementById("buttonWholesale").classList.add('active');
+	});
+	
 
 </script>
 </body>
