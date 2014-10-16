@@ -1,11 +1,37 @@
 h1 {
-	color: green;
+	width: auto;
+	padding: 20px;
+	color: #4B7935;
 	text-align: center;
-	font-family:"Courier New";
+	font-size: 3.2em;
+	font-family: 'Source Sans Pro', sans-serif;
 }
-div{
+
+/*.container {
+	width: auto;
+	padding: 20px;
+}*/
+
+.button {
+	width: 49%;
+	color: #4B7935;
 	text-align: center;
-	padding: 10px 10px 15px;
+	font-size: 2.5em;
+	font-family: 'Source Sans Pro', sans-serif;
+	display: inline-block;
+	padding: 20px;
+	cursor:pointer;
+	cursor: hand;
+}
+
+.active {
+	background-color: #EFFFEF;
+	cursor: auto;
+}
+
+#svgContainer {
+	width: auto;
+	text-align: center;
 }
 
 /*.buttons{

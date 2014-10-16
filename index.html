@@ -1,31 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="utf-8">
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="index.css">
+<style>
 
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="index.css">
-    <style>
+.subunit {fill: #F3F3F3;} 
 
-    /*svg {background-color: #FEFEFE}*/
-    .subunit {fill: #DDD;} /*stroke: #EEE; stroke-width: 1;}
-    /*.-99 {fill: none;}
-    .GL {fill: none;}
-    .AF {fill: #CDC;}*/
-
-    </style>
+</style>
     
 </head>
 <body>
 
-<div><h1>Cocaine Map</h1></div>
-<form action="http://fc-chaps.github.io" id="back-button">
-    <input type="submit" value="Back">
-</form>
-<div >
-	<button id = "buttonRetail">Retail Prices</button>
-	<button id = "buttonWholesale" >Whole Sale Prices</button>
-</div>
+<div><h1>Global dollar per gram values of cocaine salts</h1></div>
+<div class ="button active" id = "buttonRetail">Retail</div>
+<div class ="button" id = "buttonWholesale" >Wholesale</div>
+<div id="svgContainer"></div>
 
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="http://d3js.org/topojson.v1.min.js"></script>
@@ -37,9 +29,9 @@
 
 d3.json("map.json", function (error, map) {
   
-  var width = 1400,
+  var width = window.innerWidth,
     height = 700,
-	svg = d3.select("body").append("svg")
+	svg = d3.select("div#svgContainer").append("svg")
 	    .attr("width", width)
 	    .attr("height", height);
 
@@ -48,7 +40,7 @@ d3.json("map.json", function (error, map) {
 	var subunits = topojson.feature(map, map.objects.subunits),
 		projection = d3.geo.mercator()
 			.scale(200)
-			.translate([width / 2.375, height / 1.775]),
+			.translate([width / 2, height / 1.775]),
 		path = d3.geo.path()
     		.projection(projection);
 
@@ -119,10 +111,8 @@ d3.json("map.json", function (error, map) {
 			countries.forEach( function (country) {
 				if (selection === "Retail price") {
 					d3.select(".subunit." + country.id)
-						.style("fill", retailScale(country.retailPrice))
-						.on("mouseover", function(){
-							d3.select(this).style("fill", "white");
-						});
+						.style("fill", retailScale(country.retailPrice));
+					
 				}
 				else {
 					if (country.wholesalePrice === 0) {
@@ -150,15 +140,19 @@ d3.json("map.json", function (error, map) {
 			selection = "Wholesale price";
 			colorCountries(countries, selection);
 		})
-	});	    
+	});	
+
 });
 
+document.getElementById("buttonRetail").addEventListener("click", function () {
+			document.getElementById("buttonRetail").classList.add('active');
+			document.getElementById("buttonWholesale").classList.remove('active');;
+		});
 
-
-
-
-
-
+document.getElementById("buttonWholesale").addEventListener("click", function () {
+			document.getElementById("buttonRetail").classList.remove('active');
+			document.getElementById("buttonWholesale").classList.add('active');;
+		});
 
 
 </script>
