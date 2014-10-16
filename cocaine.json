@@ -23,7 +23,7 @@
 ,
 { "type": "Feature", "properties": { "Country name": "Bosnia and Herzegovina", "Alpha-2": "BA", "Retail price": "67.8", "Wholesale price": "44118.0" }, "geometry": null }
 ,
-{ "type": "Feature", "properties": { "Country name": "Russia", "Alpha-2": "RU", "Retail price": "169.9", "Wholesale price": "12579.6" }, "geometry": null }
+{ "type": "Feature", "properties": { "Country name": "Russian Federation", "Alpha-2": "RU", "Retail price": "169.9", "Wholesale price": "12579.6" }, "geometry": null }
 ,
 { "type": "Feature", "properties": { "Country name": "Germany", "Alpha-2": "DE", "Retail price": "91.7", "Wholesale price": "64044.4" }, "geometry": null }
 ,
@@ -45,7 +45,7 @@
 ,
 { "type": "Feature", "properties": { "Country name": "Czech Republic", "Alpha-2": "CZ", "Retail price": "113.6", "Wholesale price": "" }, "geometry": null }
 ,
-{ "type": "Feature", "properties": { "Country name": "Iran", "Alpha-2": "IR", "Retail price": "126.3", "Wholesale price": "" }, "geometry": null }
+{ "type": "Feature", "properties": { "Country name": "Iran (Islamic Republic of)", "Alpha-2": "IR", "Retail price": "126.3", "Wholesale price": "" }, "geometry": null }
 ,
 { "type": "Feature", "properties": { "Country name": "Turks and Caicos Islands", "Alpha-2": "TC", "Retail price": "20.0", "Wholesale price": "9000.0" }, "geometry": null }
 ,
@@ -65,7 +65,7 @@
 ,
 { "type": "Feature", "properties": { "Country name": "Dominican Republic", "Alpha-2": "DO", "Retail price": "8.2", "Wholesale price": "" }, "geometry": null }
 ,
-{ "type": "Feature", "properties": { "Country name": "Bolivia", "Alpha-2": "BO", "Retail price": "5.8", "Wholesale price": "2500.0" }, "geometry": null }
+{ "type": "Feature", "properties": { "Country name": "Bolivia (Plurinational State of)", "Alpha-2": "BO", "Retail price": "5.8", "Wholesale price": "2500.0" }, "geometry": null }
 ,
 { "type": "Feature", "properties": { "Country name": "Ukraine", "Alpha-2": "UA", "Retail price": "189.6", "Wholesale price": "160000.0" }, "geometry": null }
 ,
@@ -129,7 +129,7 @@
 ,
 { "type": "Feature", "properties": { "Country name": "Grenada", "Alpha-2": "GD", "Retail price": "36.9", "Wholesale price": "9223.4" }, "geometry": null }
 ,
-{ "type": "Feature", "properties": { "Country name": "Venezuela", "Alpha-2": "VE", "Retail price": "9.3", "Wholesale price": "4190.0" }, "geometry": null }
+{ "type": "Feature", "properties": { "Country name": "Venezuela (Bolivarian Republic of)", "Alpha-2": "VE", "Retail price": "9.3", "Wholesale price": "4190.0" }, "geometry": null }
 ,
 { "type": "Feature", "properties": { "Country name": "Uruguay", "Alpha-2": "UY", "Retail price": "12.9", "Wholesale price": "5500.0" }, "geometry": null }
 ,
@@ -169,7 +169,7 @@
 ,
 { "type": "Feature", "properties": { "Country name": "Guyana", "Alpha-2": "GY", "Retail price": "5.0", "Wholesale price": "5000.0" }, "geometry": null }
 ,
-{ "type": "Feature", "properties": { "Country name": "Ivory Coast", "Alpha-2": "CI", "Retail price": "40.4", "Wholesale price": "" }, "geometry": null }
+{ "type": "Feature", "properties": { "Country name": "Côte d'Ivoire", "Alpha-2": "CI", "Retail price": "40.4", "Wholesale price": "" }, "geometry": null }
 ,
 { "type": "Feature", "properties": { "Country name": "Hong Kong, China", "Alpha-2": "HK", "Retail price": "138.3", "Wholesale price": "50975.0" }, "geometry": null }
 ,
