@@ -20,8 +20,14 @@
 }
 
 .active {
+	transition: 0.5s;
 	background-color: #EFFFEF;
 	cursor: auto;
+}
+
+.inactive {
+	transition: 0.5s;
+	background-color: #FFFFFF;
 }
 
 #svgContainer {

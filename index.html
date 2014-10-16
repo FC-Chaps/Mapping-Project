@@ -17,7 +17,7 @@
 
 	<div class="title">Global dollar per gram values of cocaine salts</div>
 	<div class ="button active" id = "buttonRetail">Retail</div>
-	<div class ="button" id = "buttonWholesale" >Wholesale</div>
+	<div class ="button inactive" id = "buttonWholesale" >Wholesale</div>
 	<div id="svgContainer"></div>
 	<div class="databox"></div>
 
@@ -25,17 +25,17 @@
 <script src="http://d3js.org/topojson.v1.min.js"></script>
 <script>
 
-	// mapping
-
 	d3.json("map.json", function (error, map) {
 	  
-	  var width = window.innerWidth,
-	    height = 500,
-		svg = d3.select("div#svgContainer").append("svg")
-		    .attr("width", width)
-		    .attr("height", height);
+	  	var width = window.innerWidth,
+		    height = 500,
+			svg = d3.select("div#svgContainer").append("svg")
+			    .attr("width", width)
+			    .attr("height", height);
 
-	  if (error) return console.error(error);
+	  	if (error) return console.error(error);
+
+	  	// MAPPING
 
 		var subunits = topojson.feature(map, map.objects.subunits),
 			projection = d3.geo.mercator()
@@ -50,7 +50,7 @@
 			    .attr("class", function(d) { return "subunit " + d.id})
 			    .attr("d", path);
 		
-		// data fetch and processing
+		// DATA FETCH AND PROCESSING
 
 		var countries = [],
 			minRetailPrice = 1000000,
@@ -110,21 +110,26 @@
 			function colorCountries (countries, selection) {
 				countries.forEach( function (country) {
 					if (selection === "Retail price") {
-						d3.select(".subunit." + country.id)
+						d3.select(".subunit." + country.id).transition()
+							.duration(750)
 							.style("fill", retailScale(country.retailPrice));
 					}
 					else {
 						if (country.wholesalePrice === 0) {
-							d3.select(".subunit." + country.id)
+							d3.select(".subunit." + country.id).transition()
+								.duration(750)
 								.style("fill", "#F3F3F3");
 						}
 						else {
-							d3.select(".subunit." + country.id)
+							d3.select(".subunit." + country.id).transition()
+								.duration(750)
 								.style("fill", wholesaleScale(country.wholesalePrice));
 						}
 					}
 				})
 			}
+
+			// BUTTON LOGIC
 
 			var selection = "Retail price";
 
@@ -145,19 +150,19 @@
 			// DISPLAY TEXT ON EVENTS
 
 			function displayDefault () {
-				d3.select(".databox")
+				d3.select(".databox").transition()
 					.text("Hover over a country for price data");
 			}
 
 			displayDefault();
 
 			function displayDefault1 () {
-				d3.select(".databox")
+				d3.select(".databox").transition()
 					.text("Hover over another country for price data");
 			}
 
 			function displayText (name, price) {
-				d3.select(".databox")
+				d3.select(".databox").transition()
 					.text(name + "\xA0\xA0\xA0\xA0" + "$" + "\xA0" + price); // print the required text to the databox
 			}
 
@@ -193,12 +198,16 @@
 	});
 
 	document.getElementById("buttonRetail").addEventListener("click", function () {
+		document.getElementById("buttonRetail").classList.remove('inactive');
 		document.getElementById("buttonRetail").classList.add('active');
 		document.getElementById("buttonWholesale").classList.remove('active');
+		document.getElementById("buttonWholesale").classList.add('inactive');
 	});
 
 	document.getElementById("buttonWholesale").addEventListener("click", function () {
 		document.getElementById("buttonRetail").classList.remove('active');
+		document.getElementById("buttonRetail").classList.add('inactive');
+		document.getElementById("buttonWholesale").classList.remove('inactive');
 		document.getElementById("buttonWholesale").classList.add('active');
 	});
 	
