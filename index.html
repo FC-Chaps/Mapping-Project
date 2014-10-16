@@ -15,15 +15,17 @@
 </head>
 <body>
 
-<div><h1>Global dollar per gram values of cocaine salts</h1></div>
-<div class ="button active" id = "buttonRetail">Retail</div>
-<div class ="button" id = "buttonWholesale" >Wholesale</div>
-<div id="svgContainer"></div>
+	<div class="title">Global dollar per gram values of cocaine salts</div>
+	<div class ="button active" id = "buttonRetail">Retail</div>
+	<div class ="button" id = "buttonWholesale" >Wholesale</div>
+	<div id="svgContainer"></div>
+	<div class="databox"></div>
 
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="http://d3js.org/topojson.v1.min.js"></script>
 <script>
 
+<<<<<<< HEAD
 // mapping
 
 
@@ -52,63 +54,58 @@ d3.json("newer.json", function (error, map) {
 		    .attr("class", function(d) { return "subunit " + d.id})
 		    .attr("d", path);
 	
-	// data fetch and processing
 
-	var countries = [],
-		minRetailPrice = 1000000,
-		maxRetailPrice = 0,
-		minWholesalePrice = 1000000,
-		maxWholesalePrice = 0;
 
-	d3.json("cocaine.json", function (error, data) {
+		d3.json("cocaine.json", function (error, data) {
 
-		data.features.forEach( function (country) {
-		
-			// build countries array
+			data.features.forEach( function (country) {
+			
+				// build countries array
 
-			countries.push({
-				name: country.properties["Country name"],
-				id: country.properties["Alpha-2"],
-				retailPrice: +country.properties["Retail price"],
-				wholesalePrice: +country.properties["Wholesale price"]/1000
-			}) 
+				countries.push({
+					name: country.properties["Country name"],
+					id: country.properties["Alpha-2"],
+					retailPrice: Math.round(+country.properties["Retail price"]),
+					wholesalePrice: Math.round(+country.properties["Wholesale price"]/1000)
+				}) 
 
-			// find min and max values
+				// find min and max values
 
-			if (country.properties["Retail price"] && +country.properties["Retail price"] < minRetailPrice) {
-				minRetailPrice = +country.properties["Retail price"];
-			}
+				if (country.properties["Retail price"] && +country.properties["Retail price"] < minRetailPrice) {
+					minRetailPrice = +country.properties["Retail price"];
+				}
 
-			if (country.properties["Retail price"] && +country.properties["Retail price"] > maxRetailPrice) {
-				maxRetailPrice = +country.properties["Retail price"];
-			}
+				if (country.properties["Retail price"] && +country.properties["Retail price"] > maxRetailPrice) {
+					maxRetailPrice = +country.properties["Retail price"];
+				}
 
-			if (country.properties["Wholesale price"] && +country.properties["Wholesale price"] < minWholesalePrice) {
-				minWholesalePrice = +country.properties["Wholesale price"];
-			}
+				if (country.properties["Wholesale price"] && +country.properties["Wholesale price"] < minWholesalePrice) {
+					minWholesalePrice = +country.properties["Wholesale price"];
+				}
 
-			if (country.properties["Wholesale price"] && +country.properties["Wholesale price"] > maxWholesalePrice) {
-				maxWholesalePrice = +country.properties["Wholesale price"];
-			}
+				if (country.properties["Wholesale price"] && +country.properties["Wholesale price"] > maxWholesalePrice) {
+					maxWholesalePrice = +country.properties["Wholesale price"];
+				}
 
-		});
+			});
 
-		// kilo to gram
+			// kilo to gram
 
-		minWholesalePrice = minWholesalePrice/1000;
-		maxWholesalePrice = maxWholesalePrice/1000;
+			minWholesalePrice = minWholesalePrice/1000;
+			maxWholesalePrice = maxWholesalePrice/1000;
 
-		// scales
+			// scales
 
-		var retailScale = d3.scale.linear()
-			.domain([minRetailPrice, maxRetailPrice])
-			.range(["#B9EEAA", "#194400"]),
-			wholesaleScale = d3.scale.linear()
-			.domain([minWholesalePrice, maxWholesalePrice])
-			.range(["#B9EEAA", "#2A5511"]);
+			var retailScale = d3.scale.linear()
+				.domain([minRetailPrice, maxRetailPrice])
+				.range(["#B9EEAA", "#194400"]),
+				wholesaleScale = d3.scale.linear()
+				.domain([minWholesalePrice, maxWholesalePrice])
+				.range(["#B9EEAA", "#2A5511"]);
 
-		// scale colour countries
+			// scale colour countries
 
+<<<<<<< HEAD
 		function colorCountries (countries, selection) {
 			countries.forEach( function (country) {
 				if (selection === "Retail price") {
@@ -123,37 +120,87 @@ d3.json("newer.json", function (error, map) {
 					else {
 						d3.selectAll(".subunit." + country.name)
 							.style("fill", wholesaleScale(country.wholesalePrice));
+
+					}
+				})
+			}
+
+			var selection = "Retail price";
+
+			colorCountries(countries, selection)
+
+			document.getElementById("buttonRetail").addEventListener("click", function () {
+				selection = "Retail price";
+				colorCountries(countries, selection);
+				displayDefault();
+			})
+
+			document.getElementById("buttonWholesale").addEventListener("click", function () {
+				selection = "Wholesale price";
+				colorCountries(countries, selection);
+				displayDefault();
+			})
+		
+			// DISPLAY TEXT ON EVENTS
+
+			function displayDefault () {
+				d3.select(".databox")
+					.text("Hover over a country for price data");
+			}
+
+			displayDefault();
+
+			function displayDefault1 () {
+				d3.select(".databox")
+					.text("Hover over another country for price data");
+			}
+
+			function displayText (name, price) {
+				d3.select(".databox")
+					.text(name + "\xA0\xA0\xA0\xA0" + "$" + "\xA0" + price); // print the required text to the databox
+			}
+
+			function displayOptions (country) {
+				if (selection === "Retail price") { // on page load and retail button click...
+					if (country.retailPrice !== 0) {
+						displayText(country.name, country.retailPrice); // ...call displayText function (see above) with retailPrice
 					}
 				}
-			})
-		}
+				else { // on wholesale button click...
+					if (country.wholesalePrice !== 0) {
+						displayText(country.name, country.wholesalePrice); // ...call displayText function (see above) with wholesalePrice
+					}
+				}
+			}
 
-		var selection = "Retail price";
-
-		colorCountries(countries, selection)
-
-		document.getElementById("buttonRetail").addEventListener("click", function () {
-			selection = "Retail price";
-			colorCountries(countries, selection);
-		})
-
-		document.getElementById("buttonWholesale").addEventListener("click", function () {
-			selection = "Wholesale price";
-			colorCountries(countries, selection);
-		})
-	});	
-
-});
-
-document.getElementById("buttonRetail").addEventListener("click", function () {
-			document.getElementById("buttonRetail").classList.add('active');
-			document.getElementById("buttonWholesale").classList.remove('active');;
+			countries.forEach(function (country) { // run through the countries array
+				d3.select(".subunit." + country.id) // select each path using its country id
+					// MOUSEOVER
+					.on("mouseover", function(){ // add a mouseover event listener
+						displayOptions(country); // call displayAlternatives function (see above)
+					})
+					// MOUSELEAVE
+					.on("mouseleave", function(){ // add a mouseleave event listener
+						displayDefault1(); // call displayDefault function (see above)
+					})
+					// CLICK (not in use)
+					// .on("click", function(){ // add a click event listener
+					// 	displayOptions(country); // call displayAlternatives function (see above)
+					// });	
+			});
 		});
+	});
 
-document.getElementById("buttonWholesale").addEventListener("click", function () {
-			document.getElementById("buttonRetail").classList.remove('active');
-			document.getElementById("buttonWholesale").classList.add('active');;
-		});
+	document.getElementById("buttonRetail").addEventListener("click", function () {
+		document.getElementById("buttonRetail").classList.add('active');
+		document.getElementById("buttonWholesale").classList.remove('active');
+	});
+
+	document.getElementById("buttonWholesale").addEventListener("click", function () {
+		document.getElementById("buttonRetail").classList.remove('active');
+		document.getElementById("buttonWholesale").classList.add('active');
+	});
+	
 
 </script>
 </body>
