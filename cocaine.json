@@ -169,7 +169,7 @@
 ,
 { "type": "Feature", "properties": { "Country name": "Guyana", "Alpha-2": "GY", "Retail price": "5.0", "Wholesale price": "5000.0" }, "geometry": null }
 ,
-{ "type": "Feature", "properties": { "Country name": "Côte d'Ivoire", "Alpha-2": "CI", "Retail price": "40.4", "Wholesale price": "" }, "geometry": null }
+{ "type": "Feature", "properties": { "Country name": "Ivory Coast", "Alpha-2": "CI", "Retail price": "40.4", "Wholesale price": "" }, "geometry": null }
 ,
 { "type": "Feature", "properties": { "Country name": "Hong Kong, China", "Alpha-2": "HK", "Retail price": "138.3", "Wholesale price": "50975.0" }, "geometry": null }
 ,
