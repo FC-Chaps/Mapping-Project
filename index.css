@@ -20,10 +20,13 @@ h1 {
 	font-family: 'Source Sans Pro', sans-serif;
 	display: inline-block;
 	padding: 20px;
+	cursor:pointer;
+	cursor: hand;
 }
 
 .active {
 	background-color: #EFFFEF;
+	cursor: auto;
 }
 
 #svgContainer {
