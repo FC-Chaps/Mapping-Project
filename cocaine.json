@@ -23,7 +23,7 @@
 ,
 { "type": "Feature", "properties": { "Country name": "Bosnia and Herzegovina", "Alpha-2": "BA", "Retail price": "67.8", "Wholesale price": "44118.0" }, "geometry": null }
 ,
-{ "type": "Feature", "properties": { "Country name": "Russian Federation", "Alpha-2": "RU", "Retail price": "169.9", "Wholesale price": "12579.6" }, "geometry": null }
+{ "type": "Feature", "properties": { "Country name": "Russia", "Alpha-2": "RU", "Retail price": "169.9", "Wholesale price": "12579.6" }, "geometry": null }
 ,
 { "type": "Feature", "properties": { "Country name": "Germany", "Alpha-2": "DE", "Retail price": "91.7", "Wholesale price": "64044.4" }, "geometry": null }
 ,

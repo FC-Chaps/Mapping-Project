@@ -110,18 +110,18 @@
 			function colorCountries (countries, selection) {
 				countries.forEach( function (country) {
 					if (selection === "Retail price") {
-						d3.select(".subunit." + country.name).transition()
+						d3.selectAll(".subunit." + country.name).transition()
 							.duration(750)
 							.style("fill", retailScale(country.retailPrice));
 					}
 					else {
 						if (country.wholesalePrice === 0) {
-							d3.select(".subunit." + country.name).transition()
+							d3.selectAll(".subunit." + country.name).transition()
 								.duration(750)
 								.style("fill", "#F3F3F3");
 						}
 						else {
-							d3.select(".subunit." + country.name).transition()
+							d3.selectAll(".subunit." + country.name).transition()
 								.duration(750)
 								.style("fill", wholesaleScale(country.wholesalePrice));
 						}
