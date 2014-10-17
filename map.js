@@ -153,7 +153,7 @@ d3.json("newer.json", function (error, map) {
 			}
 
 			countries.forEach(function (country) { // run through the countries array
-				d3.select(".subunit." + country.name) // select each path using its country id
+				d3.selectAll(".subunit." + country.name) // select each path using its country id
 					// MOUSEOVER
 					.on("mouseover", function(){ // add a mouseover event listener
 						displayOptions(country); // call displayAlternatives function (see above)
