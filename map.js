@@ -1,3 +1,4 @@
+
 var selection;
 	
 function getData(file, callback){
@@ -162,6 +163,7 @@ getData("newer.json", function(error, map) {
 			}
 
 			countries.forEach(function (country) { // run through the countries array
+
 				d3.selectAll(".subunit." + country.name) // select each path using its country id
 					// MOUSEOVER
 					.on("mouseover", function(){ // add a mouseover event listener
@@ -193,5 +195,6 @@ getData("newer.json", function(error, map) {
 		document.getElementById("buttonRetail").classList.add('inactive');
 		document.getElementById("buttonWholesale").classList.remove('inactive');
 		document.getElementById("buttonWholesale").classList.add('active');
+
 	});
-	
+
