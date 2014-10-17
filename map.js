@@ -21,6 +21,7 @@ getData("newer.json", function(error, map) {
 
 		var subunits = topojson.feature(map, map.objects.new),
 			projection = d3.geo.mercator()
+				.center([10, 0])
 				.scale(150)
 				.translate([width / 2, height / 1.65]),
 			path = d3.geo.path()
