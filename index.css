@@ -7,6 +7,7 @@
 	font-family: 'Source Sans Pro', sans-serif;
 }
 
+
 .button {
 	width: 49%;
 	color: #4B7935;
@@ -14,7 +15,6 @@
 	font-size: 2.2em;
 	font-family: 'Source Sans Pro', sans-serif;
 	display: inline-block;
-	padding: 20px;
 	cursor:pointer;
 	cursor: hand;
 }
