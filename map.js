@@ -1,6 +1,14 @@
-	d3.json("newer.json", function (error, map) {
 
-	  
+var selection;
+	
+function getData(file, callback){
+	d3.json(file, function (error, data) {
+	  callback(error, data);
+	});
+}
+
+getData("newer.json", function(error, map) {
+
 	  	var width = window.innerWidth,
 		    height = 500,
 			svg = d3.select("div#svgContainer").append("svg")
@@ -32,8 +40,9 @@
 			minWholesalePrice = 1000000,
 			maxWholesalePrice = 0;
 
-		d3.json("cocaine.json", function (error, data) {
+		getData("cocaine.json", cocaineCallback);
 
+		function cocaineCallback(error, data) {
 			data.features.forEach( function (country) {
 			
 				// build countries array
@@ -105,7 +114,7 @@
 
 			// BUTTON LOGIC
 
-			var selection = "Retail price";
+			selection = "Retail price";
 
 			colorCountries(countries, selection)
 
@@ -169,8 +178,10 @@
 					// 	displayOptions(country); // call displayAlternatives function (see above)
 					// });	
 			});
-		});
-	});
+		}
+		}
+
+);
 
 	document.getElementById("buttonRetail").addEventListener("click", function () {
 		document.getElementById("buttonRetail").classList.remove('inactive');
