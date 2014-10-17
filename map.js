@@ -1,4 +1,5 @@
-d3.json("newer.json", function (error, map) {
+	d3.json("newer.json", function (error, map) {
+
 	  
 	  	var width = window.innerWidth,
 		    height = 500,
@@ -153,7 +154,11 @@ d3.json("newer.json", function (error, map) {
 			}
 
 			countries.forEach(function (country) { // run through the countries array
+<<<<<<< HEAD
 				d3.selectAll(".subunit." + country.name) // select each path using its country id
+=======
+				d3.select(".subunit." + country.name) // select each path using its country id
+>>>>>>> master
 					// MOUSEOVER
 					.on("mouseover", function(){ // add a mouseover event listener
 						displayOptions(country); // call displayAlternatives function (see above)
@@ -182,4 +187,6 @@ d3.json("newer.json", function (error, map) {
 		document.getElementById("buttonRetail").classList.add('inactive');
 		document.getElementById("buttonWholesale").classList.remove('inactive');
 		document.getElementById("buttonWholesale").classList.add('active');
+
 	});
+
