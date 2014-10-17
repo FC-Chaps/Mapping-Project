@@ -48,9 +48,14 @@ d3.json("map.json", function (error, map) {
 		    .data(subunits.features)
 	    .enter().append("path")
 		    .attr("class", function(d) { return "subunit " + d.id})
-		    .attr("d", path);
+		    .attr("d", path)
+
 
 	// data fetch and processing
+
+	function mouseIsInHere(this) {
+		d3.select(this).style("fill", "black");
+	}
 
 	var countries = [],
 		minRetailPrice = 1000000,
@@ -111,9 +116,13 @@ d3.json("map.json", function (error, map) {
 			countries.forEach( function (country) {
 				if (selection === "Retail price") {
 					d3.select(".subunit." + country.id)
-						.style("fill", retailScale(country.retailPrice));
+						.style("fill", retailScale(country.retailPrice))
+						.on("mouseover", funtion(){
+
+						})
+						}
 					
-				}
+				
 				else {
 					if (country.wholesalePrice === 0) {
 						d3.select(".subunit." + country.id)
@@ -153,6 +162,19 @@ document.getElementById("buttonWholesale").addEventListener("click", function ()
 			document.getElementById("buttonRetail").classList.remove('active');
 			document.getElementById("buttonWholesale").classList.add('active');;
 		});
+
+
+countries.forEach(function(country){
+	d3.select(".subunit." + country.id)
+		.on("mouseover", function(){
+			if(selection === "Retail price"){
+				d3.select("#databox").text(country.name + country.retailPrice)
+			}
+			else if(selection === "Wholesale price"){
+				d3.select("#databox").text(country.name + country.wholesalePrice)
+			}
+		})
+})
 
 
 </script>
